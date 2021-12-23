@@ -1,6 +1,7 @@
 package com.williamborges.startershop.service;
 
 import com.williamborges.startershop.model.CartItem;
+import com.williamborges.startershop.model.Pokemon;
 import com.williamborges.startershop.repository.CartItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,13 +21,16 @@ public class CartServicesImpl implements CartServices{
     }
 
     @Override
-    public CartItem addCartItem(CartItem cartItem) {
+    public CartItem addCartItem(Pokemon pokemon, int quantity) {
+        CartItem cartItem = new CartItem();
+        cartItem.setPokemon(pokemon);
+        cartItem.setQuantity(quantity);
         return cartItemRepository.save(cartItem);
     }
 
     @Override
-    public void removeCartItem(CartItem cartItem) {
-        cartItemRepository.delete(cartItem);
+    public void removeCartItem(long id) {
+        cartItemRepository.deleteById(id);
     }
 
     @Override

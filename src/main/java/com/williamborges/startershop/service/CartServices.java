@@ -1,14 +1,15 @@
 package com.williamborges.startershop.service;
 
 import com.williamborges.startershop.model.CartItem;
+import com.williamborges.startershop.model.Pokemon;
 
 
 public interface CartServices {
     public Iterable<CartItem> getAllCartItems();
 
-    public CartItem addCartItem(CartItem cartItem);
+    public CartItem addCartItem(Pokemon pokemon, int quantity);
 
-    public void removeCartItem(CartItem cartItem);
+    public void removeCartItem(long id);
 
     public CartItem updateQuantity(CartItem cartItem, int newQuantity);
 

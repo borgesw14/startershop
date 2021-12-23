@@ -53,16 +53,17 @@ public class PokemonController {
     public Iterable<CartItem> getAllCartItems() { return cartServices.getAllCartItems(); }
 
     //adds a pokemon to cart
-    @PostMapping("/addtocart")
-    public String addToCart(@RequestBody CartItem cartItem){
-        cartServices.addCartItem(cartItem);
+    @PostMapping("/addtocart/{id}/{quantity}")
+    public String addToCart(@PathVariable long id, @PathVariable int quantity){
+        Pokemon pokemon = pokemonRepository.findById(id).get();
+        cartServices.addCartItem(pokemon, quantity);
         return "Item was added to cart";
     }
 
     //deletes a pokemon order from the cart
-    @DeleteMapping("/deleteItem")
-    public  String deleteCartItem(@RequestBody CartItem cartItem){
-        cartServices.removeCartItem(cartItem);
+    @DeleteMapping("/deleteItem/{id}")
+    public  String deleteCartItem(@PathVariable long id){
+        cartServices.removeCartItem(id);
         return  "Item was deleted from cart";
     }
 
