@@ -9,7 +9,7 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pokemon_id")
     private Pokemon pokemon;
 
